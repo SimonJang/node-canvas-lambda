@@ -9,17 +9,13 @@ RUN yum -y update \
 && yum -y groupinstall "Development Tools" \
 && curl --silent --location https://rpm.nodesource.com/setup_${NODE_VERSION}.x | bash - \
 && yum install -y nodejs gcc-c++ cairo-devel libjpeg-turbo-devel pango-devel giflib-devel
-# && yum install -y nodejs cairo cairo-devel cairomm-devel libjpeg-turbo-devel pango pango-devel pangomm pangomm-devel giflib-devel
 
 RUN node --version
 
 # will be created and become working dir
 WORKDIR $OUT/nodejs
 
-RUN npm install canvas@next \
-chartjs-plugin-datalabels \
-chartjs-node-canvas \
-chart.js
+RUN npm install canvas@2.5.0
 
 # will be created and become working dir
 WORKDIR $OUT/lib
